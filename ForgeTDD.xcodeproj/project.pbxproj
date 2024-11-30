@@ -29,20 +29,42 @@
 		C605FAF32CFAA14C004BB30E /* ForgeTDDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForgeTDDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C6FE6E542CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDD" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/UITests/ForgeTDDUITests.swift,
+				Tests/UITests/ForgeTDDUITestsLaunchTests.swift,
+				Tests/UnitTests/ForgeTDDTests.swift,
+			);
+			target = C605FAD72CFAA149004BB30E /* ForgeTDD */;
+		};
+		C6FE6E552CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/UnitTests/ForgeTDDTests.swift,
+			);
+			target = C605FAE82CFAA14C004BB30E /* ForgeTDDTests */;
+		};
+		C6FE6E562CFAB9D900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/UITests/ForgeTDDUITests.swift,
+				Tests/UITests/ForgeTDDUITestsLaunchTests.swift,
+			);
+			target = C605FAF22CFAA14C004BB30E /* ForgeTDDUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C605FADA2CFAA14A004BB30E /* ForgeTDD */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C6FE6E542CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDD" target */,
+				C6FE6E552CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDTests" target */,
+				C6FE6E562CFAB9D900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDUITests" target */,
+			);
 			path = ForgeTDD;
-			sourceTree = "<group>";
-		};
-		C605FAEC2CFAA14C004BB30E /* ForgeTDDTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ForgeTDDTests;
-			sourceTree = "<group>";
-		};
-		C605FAF62CFAA14C004BB30E /* ForgeTDDUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ForgeTDDUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,8 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				C605FADA2CFAA14A004BB30E /* ForgeTDD */,
-				C605FAEC2CFAA14C004BB30E /* ForgeTDDTests */,
-				C605FAF62CFAA14C004BB30E /* ForgeTDDUITests */,
 				C605FAD92CFAA14A004BB30E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +150,6 @@
 			dependencies = (
 				C605FAEB2CFAA14C004BB30E /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				C605FAEC2CFAA14C004BB30E /* ForgeTDDTests */,
-			);
 			name = ForgeTDDTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +169,6 @@
 			);
 			dependencies = (
 				C605FAF52CFAA14C004BB30E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				C605FAF62CFAA14C004BB30E /* ForgeTDDUITests */,
 			);
 			name = ForgeTDDUITests;
 			packageProductDependencies = (
@@ -392,11 +406,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ForgeTDD/ForgeTDD.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ForgeTDD/App/ForgeTDD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ForgeTDD/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ForgeTDD/Presentation/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Z82PG9Q7U;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -419,11 +433,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ForgeTDD/ForgeTDD.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ForgeTDD/App/ForgeTDD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ForgeTDD/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ForgeTDD/Presentation/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Z82PG9Q7U;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
