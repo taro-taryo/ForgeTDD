@@ -18,7 +18,7 @@ jobs:
       # デバッグ用: 現在のパス情報とディレクトリ構造を確認
       - name: Debug Directory Structure
         run: |
-          echo "Current directory:"
+          echo "Current working directory:"
           pwd
           echo "Contents of GITHUB_WORKSPACE:"
           ls -R $GITHUB_WORKSPACE
@@ -27,12 +27,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # 正しいパスを設定
       - name: Adjust Working Directory
         run: |
           if [ -d "$GITHUB_WORKSPACE/ForgeTDD.xcodeproj" ]; then
             cd $GITHUB_WORKSPACE
           elif [ -d "$GITHUB_WORKSPACE/ForgeTDD/ForgeTDD.xcodeproj" ]; then
             cd $GITHUB_WORKSPACE/ForgeTDD
+          elif [ -d "$GITHUB_WORKSPACE/actions-runner/_work/ForgeTDD/ForgeTDD/ForgeTDD.xcodeproj" ]; then
+            cd $GITHUB_WORKSPACE/actions-runner/_work/ForgeTDD/ForgeTDD
           else
             echo "Error: ForgeTDD.xcodeproj not found in expected locations."
             exit 1
