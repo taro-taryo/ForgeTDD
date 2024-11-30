@@ -29,7 +29,7 @@ jobs:
       - name: Build Project
         run: |
           xcodebuild \
-            -project ../ForgeTDD.xcodeproj \
+            -project $GITHUB_WORKSPACE/ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
             -destination 'platform=macOS,arch=arm64' \
@@ -39,7 +39,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           xcodebuild \
-            -project ../ForgeTDD.xcodeproj \
+            -project $GITHUB_WORKSPACE/ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
             -destination 'platform=macOS,arch=arm64' \
