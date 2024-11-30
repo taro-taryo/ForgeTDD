@@ -34,7 +34,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Tests/UITests/ForgeTDDUITests.swift,
-				Tests/UITests/ForgeTDDUITestsLaunchTests.swift,
 				Tests/UnitTests/ForgeTDDTests.swift,
 			);
 			target = C605FAD72CFAA149004BB30E /* ForgeTDD */;
@@ -50,7 +49,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Tests/UITests/ForgeTDDUITests.swift,
-				Tests/UITests/ForgeTDDUITestsLaunchTests.swift,
 			);
 			target = C605FAF22CFAA14C004BB30E /* ForgeTDDUITests */;
 		};
