@@ -15,16 +15,32 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # デバッグ用に現在のディレクトリ構造を表示
+      # デバッグ用: 現在のパス情報とディレクトリ構造を確認
       - name: Debug Workspace
         run: |
-          echo "Current workspace directory: $GITHUB_WORKSPACE"
-          echo "Listing files in workspace:"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "Current directory:"
+          pwd
+          echo "Listing all files and directories:"
           ls -R $GITHUB_WORKSPACE
 
       # リポジトリをチェックアウト
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      # 正しいパスを特定するためにディレクトリ構造を調整
+      - name: Adjust Working Directory
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/ForgeTDD/ForgeTDD.xcodeproj" ]; then
+            cd $GITHUB_WORKSPACE/ForgeTDD
+          elif [ -d "$GITHUB_WORKSPACE/ForgeTDD.xcodeproj" ]; then
+            cd $GITHUB_WORKSPACE
+          else
+            echo "Error: ForgeTDD.xcodeproj not found in expected locations."
+            exit 1
+          fi
+          echo "Adjusted working directory to:"
+          pwd
 
       # 必要な依存関係をインストール
       - name: Install Dependencies
@@ -36,7 +52,7 @@ jobs:
       - name: Build Project
         run: |
           xcodebuild \
-            -project $GITHUB_WORKSPACE/ForgeTDD.xcodeproj \
+            -project ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
             -destination 'platform=macOS,arch=arm64' \
@@ -46,7 +62,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           xcodebuild \
-            -project $GITHUB_WORKSPACE/ForgeTDD.xcodeproj \
+            -project ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
             -destination 'platform=macOS,arch=arm64' \
