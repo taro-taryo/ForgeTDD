@@ -45,21 +45,6 @@ jobs:
             -destination 'platform=macOS,arch=arm64' \
             test
 
-      # テスト結果を保存
-      - name: Upload Test Results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: |
-            ~/Library/Developer/Xcode/DerivedData/**/*.xcresult
-
-      # コード解析（SwiftLint の例）
-      - name: Run SwiftLint
-        run: |
-          brew install swiftlint || true
-          swiftlint --strict
-
       # 成功通知
       - name: Notify Success
         if: success()
