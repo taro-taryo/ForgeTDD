@@ -15,6 +15,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      # デバッグ用に現在のディレクトリ構造を表示
+      - name: Debug Workspace
+        run: |
+          echo "Current workspace directory: $GITHUB_WORKSPACE"
+          echo "Listing files in workspace:"
+          ls -R $GITHUB_WORKSPACE
+
       # リポジトリをチェックアウト
       - name: Checkout Repository
         uses: actions/checkout@v3
