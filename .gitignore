@@ -60,3 +60,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+tools/project_source_compression/plane
+tools/project_source_compression/tmp_swift_source
