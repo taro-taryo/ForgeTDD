@@ -29,20 +29,20 @@ jobs:
       - name: Build Project
         run: |
           xcodebuild \
-            -project ForgeTDD.xcodeproj \
+            -project ../ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
-            -destination 'platform=macOS,arch=x86_64' \
+            -destination 'platform=macOS,arch=arm64' \
             build
 
       # 単体テスト
       - name: Run Unit Tests
         run: |
           xcodebuild \
-            -project ForgeTDD.xcodeproj \
+            -project ../ForgeTDD.xcodeproj \
             -scheme ForgeTDD \
             -sdk macosx \
-            -destination 'platform=macOS,arch=x86_64' \
+            -destination 'platform=macOS,arch=arm64' \
             test
 
       # テスト結果を保存
