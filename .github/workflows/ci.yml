@@ -19,21 +19,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # SPMキャッシュの設定
-      - name: Cache Swift Package Manager
+      # Xcode Derived Data キャッシュの設定
+      - name: Cache Derived Data
         uses: actions/cache@v3
         with:
           path: |
-            ~/.swiftpm
-            .build
-          key: ${{ runner.os }}-swiftpm-${{ hashFiles('**/Package.resolved') }}
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-xcode-deriveddata-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-swiftpm-
-
-      # 必要な依存関係を解決
-      - name: Resolve Dependencies
-        run: |
-          swift package resolve
+            ${{ runner.os }}-xcode-deriveddata-
 
       # ビルド
       - name: Build Project
