@@ -1,11 +1,10 @@
 //
 //  StateFileReaderTests.swift
-//  ForgeTDD
+//  ForgeTDDTests
 //
 //  Created by taro-taryo on 2024/12/01
 //
 //
-
 import XCTest
 
 @testable import ForgeTDD
@@ -18,22 +17,20 @@ final class StateFileReaderTests: XCTestCase {
     reader = StateFileReader()
   }
 
-  /// ファイルが存在しない場合に適切なエラーがスローされることをテストします。
   func testStateFileNotFound() {
     let filePath = "/invalid/path/to/state.yaml"
     do {
       _ = try reader.readContents(from: filePath)
-      XCTFail("存在しないファイルを読み取った場合にエラーがスローされるべきですが、スローされませんでした。")
+      XCTFail("ファイルが存在しない場合にエラーがスローされるべきです。")
     }
     catch {
       XCTAssertEqual(
         error as? StateFileError,
-        StateFileError.fileNotFound("指定されたパスにファイルが見つかりません: \(filePath)")
+        StateFileError.fileNotFound(ErrorMessages.fileNotFound(filePath))
       )
     }
   }
 
-  /// ファイルが空の場合に適切なエラーがスローされることをテストします。
   func testStateFileEmptyContent() {
     let testDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(
       "TestResources"
@@ -48,17 +45,17 @@ final class StateFileReaderTests: XCTestCase {
     defer { try? FileManager.default.removeItem(atPath: filePath) }
     do {
       _ = try reader.readContents(from: filePath)
-      XCTFail("空のファイルを読み取った場合にエラーがスローされるべきですが、スローされませんでした。")
+      XCTFail("空のファイルが存在する場合にエラーがスローされるべきです。")
     }
     catch {
       XCTAssertEqual(
         error as? StateFileError,
-        StateFileError.emptyContent("指定されたパスのファイルは空です: \(filePath)")
+        StateFileError.emptyContent(ErrorMessages.emptyContent(filePath))
       )
     }
   }
+
   func testStateFileInvalidYAMLFormat() {
-    // Given: 無効な YAML フォーマットの状態ファイル
     let testDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(
       "TestResources"
     )
@@ -75,17 +72,14 @@ final class StateFileReaderTests: XCTestCase {
       attributes: nil
     )
     defer { try? FileManager.default.removeItem(atPath: filePath) }
-
-    // When: 状態ファイルを読み込む
     do {
       _ = try reader.readContents(from: filePath)
-      XCTFail("Expected error when reading an invalid YAML file, but no error was thrown.")
+      XCTFail("無効な YAML フォーマットの場合にエラーがスローされるべきです。")
     }
     catch {
-      // Then: 適切なエラーがスローされる
       XCTAssertEqual(
         error as? StateFileError,
-        StateFileError.invalidFormat("Invalid YAML format in file: \(filePath)")
+        StateFileError.invalidFormat(ErrorMessages.invalidFormat(filePath))
       )
     }
   }
