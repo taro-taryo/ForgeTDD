@@ -57,4 +57,36 @@ final class StateFileReaderTests: XCTestCase {
       )
     }
   }
+  func testStateFileInvalidYAMLFormat() {
+    // Given: 無効な YAML フォーマットの状態ファイル
+    let testDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "TestResources"
+    )
+    let filePath = testDirectory.appendingPathComponent("invalid_state.yaml").path
+    let invalidYAMLContent = "Invalid YAML Content: : :"
+    try? FileManager.default.createDirectory(
+      at: testDirectory,
+      withIntermediateDirectories: true,
+      attributes: nil
+    )
+    FileManager.default.createFile(
+      atPath: filePath,
+      contents: invalidYAMLContent.data(using: .utf8),
+      attributes: nil
+    )
+    defer { try? FileManager.default.removeItem(atPath: filePath) }
+
+    // When: 状態ファイルを読み込む
+    do {
+      _ = try reader.readContents(from: filePath)
+      XCTFail("Expected error when reading an invalid YAML file, but no error was thrown.")
+    }
+    catch {
+      // Then: 適切なエラーがスローされる
+      XCTAssertEqual(
+        error as? StateFileError,
+        StateFileError.invalidFormat("Invalid YAML format in file: \(filePath)")
+      )
+    }
+  }
 }
