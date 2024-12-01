@@ -6,6 +6,8 @@
 //
 //
 
+// TODO: UI 実装後に自動テストを記述
+
 import XCTest
 
 final class ForgeTDDUITests: XCTestCase {

@@ -34,16 +34,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Tests/UITests/ForgeTDDUITests.swift,
-				Tests/UnitTests/ForgeTDDTests.swift,
 			);
 			target = C605FAD72CFAA149004BB30E /* ForgeTDD */;
-		};
-		C6FE6E552CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Tests/UnitTests/ForgeTDDTests.swift,
-			);
-			target = C605FAE82CFAA14C004BB30E /* ForgeTDDTests */;
 		};
 		C6FE6E562CFAB9D900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -59,7 +51,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				C6FE6E542CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDD" target */,
-				C6FE6E552CFAB9D700C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDTests" target */,
 				C6FE6E562CFAB9D900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDUITests" target */,
 			);
 			path = ForgeTDD;
