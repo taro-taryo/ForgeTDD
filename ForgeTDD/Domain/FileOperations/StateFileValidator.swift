@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Yams
 
 /// `StateFileValidator` は、状態ファイルの存在確認や内容の妥当性を検証する責務を持つクラスです。
 struct StateFileValidator {
@@ -27,5 +28,11 @@ struct StateFileValidator {
     guard !fileContents.isEmpty else {
       throw StateFileError.emptyContent("指定されたパスのファイルは空です: \(path)")
     }
+  }
+  // YAML フォーマットを検証する
+  func validateYamlFormat(at path: String) throws {
+    let fileContents = try String(contentsOfFile: path, encoding: .utf8)
+    do { _ = try Yams.load(yaml: fileContents) }
+    catch { throw StateFileError.invalidFormat("Invalid YAML format in file: \(path)") }
   }
 }

@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C6FE70052CFC40DE00C5D47F /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = C6FE70042CFC40DE00C5D47F /* Yams */; };
+		C6FE70082CFC416400C5D47F /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = C6FE70072CFC416400C5D47F /* Yams */; };
+		C6FE700A2CFC416900C5D47F /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = C6FE70092CFC416900C5D47F /* Yams */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C605FAEA2CFAA14C004BB30E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -78,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6FE70052CFC40DE00C5D47F /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6FE70082CFC416400C5D47F /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6FE700A2CFC416900C5D47F /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C605FADA2CFAA14A004BB30E /* ForgeTDD */,
+				C6FE70062CFC416400C5D47F /* Frameworks */,
 				C605FAD92CFAA14A004BB30E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +124,13 @@
 				C605FAF32CFAA14C004BB30E /* ForgeTDDUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C6FE70062CFC416400C5D47F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +153,7 @@
 			);
 			name = ForgeTDD;
 			packageProductDependencies = (
+				C6FE70042CFC40DE00C5D47F /* Yams */,
 			);
 			productName = ForgeTDD;
 			productReference = C605FAD82CFAA14A004BB30E /* ForgeTDD.app */;
@@ -156,6 +174,7 @@
 			);
 			name = ForgeTDDTests;
 			packageProductDependencies = (
+				C6FE70072CFC416400C5D47F /* Yams */,
 			);
 			productName = ForgeTDDTests;
 			productReference = C605FAE92CFAA14C004BB30E /* ForgeTDDTests.xctest */;
@@ -176,6 +195,7 @@
 			);
 			name = ForgeTDDUITests;
 			packageProductDependencies = (
+				C6FE70092CFC416900C5D47F /* Yams */,
 			);
 			productName = ForgeTDDUITests;
 			productReference = C605FAF32CFAA14C004BB30E /* ForgeTDDUITests.xctest */;
@@ -213,6 +233,9 @@
 			);
 			mainGroup = C605FACF2CFAA149004BB30E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C6FE70032CFC40DE00C5D47F /* XCRemoteSwiftPackageReference "Yams" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C605FAD92CFAA14A004BB30E /* Products */;
 			projectDirPath = "";
@@ -567,6 +590,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C6FE70032CFC40DE00C5D47F /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6FE70042CFC40DE00C5D47F /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6FE70032CFC40DE00C5D47F /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		C6FE70072CFC416400C5D47F /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6FE70032CFC40DE00C5D47F /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		C6FE70092CFC416900C5D47F /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6FE70032CFC40DE00C5D47F /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C605FAD02CFAA149004BB30E /* Project object */;
 }

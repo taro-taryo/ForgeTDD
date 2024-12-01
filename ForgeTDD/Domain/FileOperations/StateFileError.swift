@@ -14,4 +14,5 @@ enum StateFileError: Error, Equatable {
   case fileNotFound(String)
   /// ファイルが空の場合に発生するエラー。
   case emptyContent(String)
+  case invalidFormat(String)
 }

@@ -20,6 +20,7 @@ struct StateFileReader {
   func readContents(from path: String) throws -> String {
     try validator.validateFileExists(at: path)
     try validator.validateFileNotEmpty(at: path)
+    try validator.validateYamlFormat(at: path)  // YAML フォーマットを検証
     return try String(contentsOfFile: path, encoding: .utf8)
   }
 }
