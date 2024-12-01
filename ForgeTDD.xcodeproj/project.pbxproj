@@ -43,6 +43,7 @@
 			membershipExceptions = (
 				Domain/FileOperations/StateFileError.swift,
 				Domain/FileOperations/StateFileReader.swift,
+				Domain/FileOperations/StateFileValidator.swift,
 				Tests/UITests/ForgeTDDUITests.swift,
 			);
 			target = C605FAF22CFAA14C004BB30E /* ForgeTDDUITests */;
@@ -52,6 +53,7 @@
 			membershipExceptions = (
 				Domain/FileOperations/StateFileError.swift,
 				Domain/FileOperations/StateFileReader.swift,
+				Domain/FileOperations/StateFileValidator.swift,
 				Tests/UnitTests/StateFileReaderTests.swift,
 			);
 			target = C605FAE82CFAA14C004BB30E /* ForgeTDDTests */;

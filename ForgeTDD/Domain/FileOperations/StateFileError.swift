@@ -8,5 +8,10 @@
 
 import Foundation
 
-/// 状態ファイルの操作に関連するエラー
-enum StateFileError: Error, Equatable { case fileNotFound(String) }
+/// `StateFileError` は、状態ファイル操作時に発生する可能性のあるエラーを表します。
+enum StateFileError: Error, Equatable {
+  /// ファイルが見つからなかった場合に発生するエラー。
+  case fileNotFound(String)
+  /// ファイルが空の場合に発生するエラー。
+  case emptyContent(String)
+}

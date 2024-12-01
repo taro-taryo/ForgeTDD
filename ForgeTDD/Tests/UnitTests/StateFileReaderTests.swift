@@ -18,21 +18,42 @@ final class StateFileReaderTests: XCTestCase {
     reader = StateFileReader()
   }
 
-  /// ファイルが存在しない場合のエラーをテスト
+  /// ファイルが存在しない場合に適切なエラーがスローされることをテストします。
   func testStateFileNotFound() {
-    // Given: 存在しないファイルパス
     let filePath = "/invalid/path/to/state.yaml"
-
-    // When: ファイル読み込みを試みる
     do {
       _ = try reader.readContents(from: filePath)
-      XCTFail("Expected error when reading from a non-existent file, but no error was thrown.")
+      XCTFail("存在しないファイルを読み取った場合にエラーがスローされるべきですが、スローされませんでした。")
     }
     catch {
-      // Then: 適切なエラーがスローされる
       XCTAssertEqual(
         error as? StateFileError,
-        StateFileError.fileNotFound("File not found at path: \(filePath)")
+        StateFileError.fileNotFound("指定されたパスにファイルが見つかりません: \(filePath)")
+      )
+    }
+  }
+
+  /// ファイルが空の場合に適切なエラーがスローされることをテストします。
+  func testStateFileEmptyContent() {
+    let testDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "TestResources"
+    )
+    let filePath = testDirectory.appendingPathComponent("empty_state.yaml").path
+    try? FileManager.default.createDirectory(
+      at: testDirectory,
+      withIntermediateDirectories: true,
+      attributes: nil
+    )
+    FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
+    defer { try? FileManager.default.removeItem(atPath: filePath) }
+    do {
+      _ = try reader.readContents(from: filePath)
+      XCTFail("空のファイルを読み取った場合にエラーがスローされるべきですが、スローされませんでした。")
+    }
+    catch {
+      XCTAssertEqual(
+        error as? StateFileError,
+        StateFileError.emptyContent("指定されたパスのファイルは空です: \(filePath)")
       )
     }
   }

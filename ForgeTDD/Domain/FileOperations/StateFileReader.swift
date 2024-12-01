@@ -8,20 +8,18 @@
 
 import Foundation
 
+/// `StateFileReader` は、状態ファイルの内容を読み取る責務を持つクラスです。
+/// ファイルの存在や内容の妥当性の確認は `StateFileValidator` に委譲されます。
 struct StateFileReader {
-  /// ファイルの存在を検証
-  /// - Parameter path: 検証するファイルパス
-  func validateFileExists(at path: String) throws {
-    guard FileManager.default.fileExists(atPath: path) else {
-      throw StateFileError.fileNotFound("File not found at path: \(path)")
-    }
-  }
+  private let validator = StateFileValidator()
 
-  /// ファイルの内容を読み取る
-  /// - Parameter path: 読み取るファイルパス
-  /// - Returns: ファイル内容の文字列
+  /// 指定されたパスの状態ファイルを読み取ります。
+  /// - Parameter path: 読み取り対象のファイルパス。
+  /// - Returns: ファイルの内容を文字列として返します。
+  /// - Throws: ファイルが存在しない、または空の場合に `StateFileError` をスローします。
   func readContents(from path: String) throws -> String {
-    try validateFileExists(at: path)
+    try validator.validateFileExists(at: path)
+    try validator.validateFileNotEmpty(at: path)
     return try String(contentsOfFile: path, encoding: .utf8)
   }
 }
