@@ -63,3 +63,4 @@ fastlane/test_output
 tools/project_source_compression/plane
 tools/project_source_compression/tmp_swift_source
 actions-runner
+tmp_swift_source
