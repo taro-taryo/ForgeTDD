@@ -41,6 +41,7 @@
 		C6FE6E562CFAB9D900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Domain/StateFileReader.swift,
 				Tests/UITests/ForgeTDDUITests.swift,
 			);
 			target = C605FAF22CFAA14C004BB30E /* ForgeTDDUITests */;
@@ -48,6 +49,7 @@
 		C6FE6F742CFC248900C5D47F /* Exceptions for "ForgeTDD" folder in "ForgeTDDTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Domain/StateFileReader.swift,
 				Tests/UnitTests/StateFileReaderTests.swift,
 			);
 			target = C605FAE82CFAA14C004BB30E /* ForgeTDDTests */;
