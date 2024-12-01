@@ -9,11 +9,12 @@ show_help() {
   -o, --output-file FILE    出力ファイル。指定しない場合、標準出力に出力します。
   -t, --tmp-dir DIR         一時ディレクトリ（デフォルト: tmp_swift_source）
   -c, --config FILE         swift-format 設定ファイル（デフォルト: ./swift-format-configuration-compact）
+  -k, --keep-comments       コメントを削除しない
   -d, --debug               デバッグ情報を表示
   -h, --help                このヘルプを表示
 
 例:
-  $(basename "$0") -s "/path/to/source" -o "output.txt" -t "temp_dir" -c "./tools/custom-swift-format-config"
+  $(basename "$0") -s "/path/to/source" -o "output.txt" -t "temp_dir" -c "./tools/custom-swift-format-config" -k
 EOF
 }
 
@@ -22,6 +23,7 @@ SOURCE_DIR=""
 TMP_DIR="tmp_swift_source"
 CONFIG_FILE="./swift-format-configuration-compact"
 DEBUG=0
+KEEP_COMMENTS=0
 OUTPUT_FILE=""
 
 # 引数がない場合の処理
@@ -48,6 +50,10 @@ while [[ $# -gt 0 ]]; do
     -c|--config)
       CONFIG_FILE="$2"
       shift 2
+      ;;
+    -k|--keep-comments)
+      KEEP_COMMENTS=1
+      shift
       ;;
     -d|--debug)
       DEBUG=1
@@ -113,11 +119,17 @@ output_content() {
 
 # 出力ファイルへの書き込み or 標準出力
 find "$TMP_DIR" -name "*.swift" | while read -r file; do
-  formatted_content=$(cat "$file" | sed '/^\/\//d')
+  if [[ $KEEP_COMMENTS -eq 0 ]]; then
+    formatted_content=$(cat "$file" | sed '/^\/\//d')
+  else
+    formatted_content=$(cat "$file")
+  fi
+
   if [[ -z $formatted_content ]]; then
     debug_log "swift-format failed or returned empty content for $file"
     continue
   fi
+
   relative_path="${file#$TMP_DIR/}"
   if [[ -n $OUTPUT_FILE ]]; then
     {
