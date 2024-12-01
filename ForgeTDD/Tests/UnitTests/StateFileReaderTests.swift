@@ -36,4 +36,25 @@ final class StateFileReaderTests: XCTestCase {
       )
     }
   }
+  // Red Phase: 状態ファイルの内容が空の場合の挙動をテスト
+  func testStateFileEmptyContent() {
+    // Given: 空の状態ファイルのパス
+    let filePath = "/tmp/empty_state.yaml"
+
+    // Create an empty file at the path
+    FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
+
+    // When: 状態ファイルを読み込む
+    do {
+      _ = try reader.readContents(from: filePath)
+      XCTFail("Expected error when reading an empty file, but no error was thrown.")
+    }
+    catch {
+      // Then: 適切なエラーがスローされる
+      XCTAssertEqual(
+        error as? StateFileError,
+        StateFileError.emptyContent("File at path \(filePath) is empty.")
+      )
+    }
+  }
 }
