@@ -19,21 +19,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # SPMキャッシュの設定
-      - name: Cache Swift Package Manager
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.swiftpm
-            .build
-          key: ${{ runner.os }}-swiftpm-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-swiftpm-
-
-      # 必要な依存関係を解決
-      - name: Resolve Dependencies
+      # 必要な依存関係をインストール
+      - name: Install Dependencies
         run: |
-          swift package resolve
+          xcodebuild -version
+          swift --version
 
       # ビルド
       - name: Build Project
