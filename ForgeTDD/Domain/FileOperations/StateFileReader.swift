@@ -17,11 +17,18 @@ struct StateFileReader {
     }
   }
 
+  func validateFileNotEmpty(at path: String) throws {
+    let fileContents = try String(contentsOfFile: path, encoding: .utf8)
+    guard !fileContents.isEmpty else {
+      throw StateFileError.emptyContent("File at path \(path) is empty.")
+    }
+  }
   /// ファイルの内容を読み取る
   /// - Parameter path: 読み取るファイルパス
   /// - Returns: ファイル内容の文字列
   func readContents(from path: String) throws -> String {
     try validateFileExists(at: path)
+    try validateFileNotEmpty(at: path)
     return try String(contentsOfFile: path, encoding: .utf8)
   }
 }

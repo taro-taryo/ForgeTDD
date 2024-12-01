@@ -9,4 +9,7 @@
 import Foundation
 
 /// 状態ファイルの操作に関連するエラー
-enum StateFileError: Error, Equatable { case fileNotFound(String) }
+enum StateFileError: Error, Equatable {
+  case fileNotFound(String)
+  case emptyContent(String)
+}

@@ -38,12 +38,23 @@ final class StateFileReaderTests: XCTestCase {
   }
   // Red Phase: 状態ファイルの内容が空の場合の挙動をテスト
   func testStateFileEmptyContent() {
-    // Given: 空の状態ファイルのパス
-    let filePath = "/tmp/empty_state.yaml"
-
-    // Create an empty file at the path
+    // Given: 存在するが内容が空のファイル
+    let testDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "TestResources"
+    )
+    let filePath = testDirectory.appendingPathComponent("empty_state.yaml").path
+    // テスト用ディレクトリを作成
+    try? FileManager.default.createDirectory(
+      at: testDirectory,
+      withIntermediateDirectories: true,
+      attributes: nil
+    )
+    // 空のファイルを作成
     FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
-
+    defer {
+      // テスト終了後にファイルを削除
+      try? FileManager.default.removeItem(atPath: filePath)
+    }
     // When: 状態ファイルを読み込む
     do {
       _ = try reader.readContents(from: filePath)
@@ -57,4 +68,5 @@ final class StateFileReaderTests: XCTestCase {
       )
     }
   }
+
 }
