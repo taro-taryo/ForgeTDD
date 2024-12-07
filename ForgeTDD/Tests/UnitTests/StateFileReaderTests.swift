@@ -68,9 +68,6 @@ final class StateFileReaderTests: XCTestCase {
       contents: invalidYAMLContent.data(using: .utf8),
       attributes: nil
     )
-//    defer {
-//            try? FileManager.default.removeItem(atPath: filePath)
-//    }
     do {
       _ = try reader.readContents(from: filePath)
       XCTFail("無効な YAML フォーマットの場合にエラーがスローされるべきです。")
@@ -81,5 +78,8 @@ final class StateFileReaderTests: XCTestCase {
         StateFileError.invalidFormat(ErrorMessages.invalidFormat(filePath))
       )
     }
+    // 一時ファイル削除
+    do { try FileManager.default.removeItem(atPath: filePath) }
+    catch { XCTFail("一時ファイルの削除に失敗しました: \(error)") }
   }
 }
